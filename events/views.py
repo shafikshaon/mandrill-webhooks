@@ -36,6 +36,7 @@ class Webhook(View):
                         # Set message to Redis cache
                         cache.set(msg_id, message)
                         print(cache.get(msg_id))
+                        # Send notification
                         async_to_sync(channel_layer.group_send)(
                             "mandrill",
                             {
