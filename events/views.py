@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
-
+from django.core.cache import cache
 
 class Home(View):
     def get(self, request, *args, **kwargs):
@@ -28,7 +28,8 @@ class Webhook(View):
                     email = event.get('msg', {}).get('email')
                     message = event.get('msg', {})
                     if event_type and msg_id:
-                        print(f'{subject} {event_type} by {email}. The message is {message}')
+                        # Set message to Redis cache
+                        cache.set(msg_id, message)
             else:
                 return HttpResponse("Empty events", status=400)
             return HttpResponse(status=200)
