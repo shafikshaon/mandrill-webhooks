@@ -5,6 +5,20 @@
     <title>Mandrill Webhook Test</title>
 </head>
 <body>
-<h1>Mandrill Webhook</h1>
+<h1>Mandrill Webhook Events</h1>
+<pre id="events"></pre>
+<script>
+  const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+  const host = window.location.host;
+  const wsUrl = `${protocol}//${host}/ws/mandrill/`;
+
+  const socket = new WebSocket(wsUrl);
+  const events = document.getElementById('events');
+
+  socket.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+    events.textContent += `Event: ${data.event_type}, Message ID: ${data.msg_id}, Subject: ${data.subject}\n\n`;
+  };
+</script>
 </body>
 </html>
