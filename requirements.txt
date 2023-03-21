@@ -3,7 +3,7 @@ async-timeout==4.0.2
 certifi==2022.12.7
 channels==4.0.0
 channels-redis==4.0.0
-Django==4.1
+Django==4.1.7
 msgpack==1.0.5
 pip==23.0.1
 redis==4.5.2
