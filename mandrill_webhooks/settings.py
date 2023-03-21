@@ -2,13 +2,11 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 SECRET_KEY = '3vl6#n87-rc+&l--p8!!nex$(wa@mmixzg+!=ux+a(*c3oj)(u'
 
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -20,6 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'channels',
+    'events',
 ]
 
 MIDDLEWARE = [
@@ -52,7 +51,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mandrill_webhooks.wsgi.application'
 
-
 # Database
 
 DATABASES = {
@@ -73,7 +71,6 @@ CHANNEL_LAYERS = {
     },
 }
 
-
 # Password validation
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -91,7 +88,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 
 LANGUAGE_CODE = 'en-us'
@@ -101,7 +97,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 
