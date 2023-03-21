@@ -17,7 +17,7 @@
 
   socket.onmessage = (event) => {
     const data = JSON.parse(event.data);
-    events.textContent += `Event: ${data.event_type}, Message ID: ${data.msg_id}, Subject: ${data.subject}\n\n`;
+    events.textContent += `Event: ${data.event_type}, Message ID: ${data.msg_id}, Subject: ${data.subject}, Email: ${data.email}\n\n`;
   };
 </script>
 </body>
