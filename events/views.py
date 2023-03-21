@@ -14,14 +14,21 @@ class Home(View):
 
 @method_decorator(csrf_exempt, name="dispatch")
 class Webhook(View):
-    def head(self, request, *args, **kwargs):
+    async def head(self, request, *args, **kwargs):
         return HttpResponse(status=200)
 
-    def post(self, request, *args, **kwargs):
+    async def post(self, request, *args, **kwargs):
         try:
             if "mandrill_events" in request.POST:
                 events = json.loads(request.POST["mandrill_events"])
-                print(events)
+                for event in events:
+                    event_type = event.get('event')
+                    msg_id = event.get('msg', {}).get('_id')
+                    subject = event.get('msg', {}).get('subject')
+                    email = event.get('msg', {}).get('email')
+                    message = event.get('msg', {})
+                    if event_type and msg_id:
+                        print(f'{subject} {event_type} by {email}. The message is {message}')
             else:
                 return HttpResponse("Empty events", status=400)
             return HttpResponse(status=200)
